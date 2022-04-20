@@ -20,3 +20,13 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+Route::controller(\App\Http\Controllers\Auth\LoginController::class)->prefix('auth')->name('auth.')->group(function (){
+   Route::prefix('social')->name('social.')->group(function (){
+       Route::get('/{social}/redirect', 'handleSocialRedirect')->name('redirect');
+
+       Route::get('/{social}/callback','handleSocialCallback')->name('callback');
+   });
+
+});
