@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Users\UserSocial;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -58,4 +59,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function socials()
+    {
+        return $this->hasMany(UserSocial::class);
+    }
+
+    public function addSocial($socialId, $socialName, $authType = 'normal')
+    {
+        return $this->socials()->updateOrCreate(['social_id' => $socialId, 'social_name' => $socialName, 'auth_type' => $authType]);
+    }
 }

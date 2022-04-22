@@ -21,20 +21,20 @@ class LoginController extends Controller
 
     public function handleSocialCallback($social)
     {
-        try {
+//        try {
             $user = Socialite::driver($social)->stateless()->user();
+            dd($user);
             $dataCreate['name'] =  $user->getName();
             $dataCreate['email'] =  $user->getEmail();
             $dataCreate['password'] = config('user.password_default');
             $userCreate = $this->create($dataCreate);
             $this->createTeam($userCreate);
-
             return redirect()->intended();
 
-        }catch (\Exception $exception)
-        {
-
-        }
+//        }catch (\Exception $exception)
+//        {
+//
+//        }
     }
 
     /**
