@@ -27,7 +27,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'email_verified_at'
     ];
 
     /**
@@ -68,5 +68,10 @@ class User extends Authenticatable
     public function addSocial($socialId, $socialName, $authType = 'normal')
     {
         return $this->socials()->updateOrCreate(['social_id' => $socialId, 'social_name' => $socialName, 'auth_type' => $authType]);
+    }
+
+    public function scopeWithEmail($query, $email)
+    {
+        return $query ? $query->whereEmail($email) : null;
     }
 }

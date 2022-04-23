@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('social_id')->unique();
             $table->string('auth_type')->unique();
-            $table->enum('social_name', (array)\App\Enums\Social::class);
+            $table->string('social_name');
             $table->foreignIdFor(\App\Models\User::class)->constrained()->onDelete('cascade');
             $table->timestamps();
         });
