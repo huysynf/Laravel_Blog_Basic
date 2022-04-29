@@ -41,7 +41,6 @@ class LoginController extends Controller
                 $this->createUserSocial($userSocial, $social);
             }
             return redirect()->intended();
-
         } catch (\Exception $exception) {
             abort(500, $exception->getMessage());
         }
