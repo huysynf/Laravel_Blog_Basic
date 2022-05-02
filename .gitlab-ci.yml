@@ -1,9 +1,6 @@
 image: huysynf/php-alpine:8.0
 
 cache:
-  paths:
-    - vendor/
-    - node_modules/
 
 stages:          # List of stages for jobs, and their order of execution
   - build
