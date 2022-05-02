@@ -32,13 +32,14 @@ lint-test-job:   # This job also runs in the test stage.
     - echo "Linting code... This will take about 10 seconds."
     - sleep 10
     - echo "No lint issues found."
+
 unit-test-job:
   stage: test
   variables:
     MYSQL_ROOT_PASSWORD: root
-    MYSQL_USER: homestead
-    MYSQL_PASSWORD: secret
-    MYSQL_DATABASE: homestead
+    MYSQL_USER: sail
+    MYSQL_PASSWORD: password
+    MYSQL_DATABASE: huyhq_blog
     DB_HOST: mysql
     MYSQL_ALLOW_EMPTY_PASSWORD: "1"
   services:
