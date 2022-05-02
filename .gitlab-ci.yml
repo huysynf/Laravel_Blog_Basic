@@ -1,4 +1,4 @@
-image: sanghvdeha/laravel-ci-php:8.0-alpine
+image: huysynf/php-alpine:8.0
 
 stages:          # List of stages for jobs, and their order of execution
   - build
