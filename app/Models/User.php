@@ -60,18 +60,34 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function socials()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+
+    public function socials(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(UserSocial::class);
     }
 
-    public function addSocial($socialId, $socialName, $authType = 'normal')
+    /**
+     * @param $socialId
+     * @param $socialName
+     * @param $authType
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function addSocial($socialId, $socialName,string $authType = 'normal'): \Illuminate\Database\Eloquent\Model
     {
-        return $this->socials()->updateOrCreate(['social_id' => $socialId, 'social_name' => $socialName, 'auth_type' => $authType]);
+        return $this->socials()->updateOrCreate(
+            [
+                'social_id' => $socialId,
+                'social_name' => $socialName,
+                'auth_type' => $authType
+            ]
+        );
     }
 
     public function scopeWithEmail($query, $email)
     {
-        return $query ? $query->whereEmail($email) : null;
+        return $email ? $query->whereEmail($email) : null;
     }
 }
