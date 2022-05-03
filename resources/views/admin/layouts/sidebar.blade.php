@@ -17,7 +17,7 @@
                 <div class="collapse" id="ProfileNav" style="">
                     <ul class="nav ">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{to_route('profile.show')}}">
+                            <a class="nav-link text-white" href="{{route('profile.show')}}">
                                 <span class="sidenav-mini-icon"> MP </span>
                                 <span class="sidenav-normal  ms-3  ps-1"> My Profile </span>
                             </a>
@@ -29,17 +29,23 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white " href="../../pages/authentication/signin/basic.html">
+                            <a class="nav-link text-white href="{{ route('logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('logout-form-sidebar').submit();">
                                 <span class="sidenav-mini-icon"> L </span>
                                 <span class="sidenav-normal  ms-3  ps-1"> Logout </span>
                             </a>
+                            <form id="logout-form-sidebar" action="{{ route('logout') }}" method="POST"
+                                  style="display: none;">
+                                @csrf
+                            </form>
+
                         </li>
                     </ul>
                 </div>
             </li>
             <hr class="horizontal light mt-0">
             <li class="nav-item">
-                <a  href="{{route('admin.dashboard')}}" class="nav-link text-white active" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
+                <a  href="{{route('admin.dashboard')}}" class="nav-link text-white active">
                     <i class="material-icons-round opacity-10">dashboard</i>
                     <span class="nav-link-text ms-2 ps-1">Dashboards</span>
                 </a>
@@ -68,6 +74,9 @@
                         </li>
                     </ul>
                 </div>
+            </li>
+            <li class="nav-item mt-3">
+                <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder text-white">PRODUCTS</h6>
             </li>
             <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#applicationsExamples" class="nav-link text-white " aria-controls="applicationsExamples" role="button" aria-expanded="false">
@@ -114,6 +123,9 @@
                         </li>
                     </ul>
                 </div>
+            </li>
+            <li class="nav-item mt-3">
+                <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder text-white">CONTENTS</h6>
             </li>
             <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#ecommerceExamples" class="nav-link text-white " aria-controls="ecommerceExamples" role="button" aria-expanded="false">
@@ -186,6 +198,9 @@
                         </li>
                     </ul>
                 </div>
+            </li>
+            <li class="nav-item mt-3">
+                <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder text-white">SETTINGS</h6>
             </li>
             <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#authExamples" class="nav-link text-white " aria-controls="authExamples" role="button" aria-expanded="false">
