@@ -18,7 +18,7 @@ abstract class BaseRepository
      * Retrieve all data of repository
      * @return Collection|Model[] `
      */
-    public function all()
+    public function all(): array|Collection
     {
         return $this->model->all();
     }
@@ -29,7 +29,7 @@ abstract class BaseRepository
      * @param array $columns
      * @return
      */
-    public function paginate($limit = null, $columns = ['*'])
+    public function paginate($limit = null, array $columns = ['*'])
     {
         $limit = is_null($limit) ? config('repository.pagination.limit', 10) : $limit;
 
@@ -42,22 +42,28 @@ abstract class BaseRepository
      * @param array $columns
      * @return
      */
-    public function find($id, $columns = ['*'])
-    {
-        return $this->model->findOrFail($id, $columns);
-    }
-
-    public function findWithoutRedirect($id, $columns = ['*'])
+    public function find($id, array $columns = ['*'])
     {
         return $this->model->find($id, $columns);
     }
 
-    public function findOrFail($id, $columns = ['*'])
+    /**
+     * @param $id
+     * @param array $columns
+     * @return mixed
+     */
+
+    public function findOrFail($id, array $columns = ['*']): mixed
     {
         return $this->model->findOrFail($id);
     }
 
-    public function findOrFailWithTrashed($id, $columns = ['*'])
+    /**
+     * @param $id
+     * @param array $columns
+     * @return mixed
+     */
+    public function findOrFailWithTrashed($id,array $columns = ['*']): mixed
     {
         return $this->model->withTrashed()->findOrFail($id);
     }
@@ -78,7 +84,7 @@ abstract class BaseRepository
      * @param $id
      * @return BaseRepository
      */
-    public function update(array $input, $id)
+    public function update(array $input, $id): BaseRepository
     {
         $model = $this->model->findOrFail($id);
         $model->fill($input);
@@ -94,35 +100,67 @@ abstract class BaseRepository
      *
      * @return int
      */
-    public function delete($id)
+    public function destroy($id): int
     {
         return $this->model->destroy($id);
     }
 
-    public function multipleDelete(array $ids)
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function delete($id): mixed
+    {
+        $model = $this->model->findOrFail($id);
+        $model?->delete();
+        return $model;
+    }
+
+    /**
+     * @param array $ids
+     * @return mixed
+     */
+
+    public function multipleDelete(array $ids): mixed
     {
         return $this->model->destroy(array_values($ids));
     }
 
-    public function latest($id)
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function latest($id): mixed
     {
         return $this->model->latest('id');
     }
 
     abstract public function model();
 
+    /**
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
     public function makeModel()
     {
         $this->model = app()->make($this->model());
     }
 
-    public function updateOrCreate(array $arrayFind, $arrayCreate = ['*'])
+    /**
+     * @param array $arrayFind
+     * @param $arrayCreate
+     * @return mixed
+     */
+    public function updateOrCreate(array $arrayFind,array $arrayCreate = ['*']):mixed
     {
         return $this->model->updateOrCreate($arrayFind, $arrayCreate);
     }
 
-    public function insertMany($data)
+    /**
+     * @param $data
+     * @return null
+     */
+    public function insertMany($dataCreates)
     {
-        return count($data) > 0 ? $this->model->insert($data) : null;
+        return count($dataCreates) > 0 ? $this->model->insert($dataCreates) : null;
     }
 }

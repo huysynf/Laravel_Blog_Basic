@@ -1,9 +1,9 @@
 echo "-------------------Conventions test----------------------"
 
 echo "Testing PSR-2"
-phpcs --standard=PSR2 --sniffs=Generic.PHP.LowerCaseConstant tests
-phpcs --standard=PSR2 app/Traits
-phpcs --standard=PSR2 app/Models
-phpcs --standard=PSR2 app/Services
-phpcs --standard=PSR2 app/Repositories
-phpcs --standard=PSR2 app/Http/Controllers
+./vendor/bin/phpcs --standard=PSR2 --sniffs=Generic.PHP.LowerCaseConstant tests
+./vendor/bin/phpcs --standard=PSR2 app/Traits
+./vendor/bin/phpcs --standard=PSR2 app/Models
+./vendor/bin/phpcs --standard=PSR2 app/Services
+./vendor/bin/phpcs --standard=PSR2 app/Repositories
+./vendor/bin/phpcs --standard=PSR2 app/Http/Controllers
