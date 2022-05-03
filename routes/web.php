@@ -19,12 +19,12 @@ Route::get('/', function () {
 
 
 Route::get('/home', function () {
-    return view('admin.layouts.app');
+    return view('admin.dashboard.index');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function (){
+    includeRoutes(__DIR__.'/admin/');
+});
 
 
 Route::controller(\App\Http\Controllers\Auth\LoginController::class)->prefix('auth')->name('auth.')->group(function (){

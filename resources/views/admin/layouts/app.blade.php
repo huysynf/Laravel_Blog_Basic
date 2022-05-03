@@ -1,188 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <link rel="shortcut icon" href="{{asset('assets/img/favicon.ico')}}" />
-    <link
-        rel="apple-touch-icon"
-        sizes="76x76"
-        href="{{asset('assets/img/apple-icon.png')}}"
-    />
-    <title>{{ config('app.name', 'Laravel') }}</title>
-    @include('admin.layouts.style')
-    @yield('style')
-</head>
-<body class="text-blueGray-700 antialiased">
-<noscript>You need to enable JavaScript to run this app.</noscript>
-<div id="root">
-    @include('admin.layouts.sidebar')
-    <div class="relative md:ml-64 bg-blueGray-50">
-    @include('admin.layouts.navbar')
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/img/apple-icon.png')}}">
+    <link rel="icon" type="image/png" href="{{asset('assets/img/favicon.png')}}">
+    <title>
+        @yield('title', 'Huyhq')
+    </title>
 
-    <!-- Header -->
-        <div class="relative bg-pink-600 md:pt-32 pb-32 pt-12">
-            <div class="px-4 md:px-10 mx-auto w-full">
-                <div>
-                    <!-- Card stats -->
-                    <div class="flex flex-wrap">
-                        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-                            <div
-                                class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg"
-                            >
-                                <div class="flex-auto p-4">
-                                    <div class="flex flex-wrap">
-                                        <div
-                                            class="relative w-full pr-4 max-w-full flex-grow flex-1"
-                                        >
-                                            <h5
-                                                class="text-blueGray-400 uppercase font-bold text-xs"
-                                            >
-                                                Traffic
-                                            </h5>
-                                            <span class="font-semibold text-xl text-blueGray-700">
-                            350,897
-                          </span>
-                                        </div>
-                                        <div class="relative w-auto pl-4 flex-initial">
-                                            <div
-                                                class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-500"
-                                            >
-                                                <i class="far fa-chart-bar"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="text-sm text-blueGray-400 mt-4">
-                        <span class="text-emerald-500 mr-2">
-                          <i class="fas fa-arrow-up"></i> 3.48%
-                        </span>
-                                        <span class="whitespace-nowrap">
-                          Since last month
-                        </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-                            <div
-                                class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg"
-                            >
-                                <div class="flex-auto p-4">
-                                    <div class="flex flex-wrap">
-                                        <div
-                                            class="relative w-full pr-4 max-w-full flex-grow flex-1"
-                                        >
-                                            <h5
-                                                class="text-blueGray-400 uppercase font-bold text-xs"
-                                            >
-                                                New users
-                                            </h5>
-                                            <span class="font-semibold text-xl text-blueGray-700">
-                            2,356
-                          </span>
-                                        </div>
-                                        <div class="relative w-auto pl-4 flex-initial">
-                                            <div
-                                                class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-orange-500"
-                                            >
-                                                <i class="fas fa-chart-pie"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="text-sm text-blueGray-400 mt-4">
-                        <span class="text-red-500 mr-2">
-                          <i class="fas fa-arrow-down"></i> 3.48%
-                        </span>
-                                        <span class="whitespace-nowrap"> Since last week </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-                            <div
-                                class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg"
-                            >
-                                <div class="flex-auto p-4">
-                                    <div class="flex flex-wrap">
-                                        <div
-                                            class="relative w-full pr-4 max-w-full flex-grow flex-1"
-                                        >
-                                            <h5
-                                                class="text-blueGray-400 uppercase font-bold text-xs"
-                                            >
-                                                Sales
-                                            </h5>
-                                            <span class="font-semibold text-xl text-blueGray-700">
-                            924
-                          </span>
-                                        </div>
-                                        <div class="relative w-auto pl-4 flex-initial">
-                                            <div
-                                                class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-pink-500"
-                                            >
-                                                <i class="fas fa-users"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="text-sm text-blueGray-400 mt-4">
-                        <span class="text-orange-500 mr-2">
-                          <i class="fas fa-arrow-down"></i> 1.10%
-                        </span>
-                                        <span class="whitespace-nowrap"> Since yesterday </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-                            <div
-                                class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg"
-                            >
-                                <div class="flex-auto p-4">
-                                    <div class="flex flex-wrap">
-                                        <div
-                                            class="relative w-full pr-4 max-w-full flex-grow flex-1"
-                                        >
-                                            <h5
-                                                class="text-blueGray-400 uppercase font-bold text-xs"
-                                            >
-                                                Performance
-                                            </h5>
-                                            <span class="font-semibold text-xl text-blueGray-700">
-                            49,65%
-                          </span>
-                                        </div>
-                                        <div class="relative w-auto pl-4 flex-initial">
-                                            <div
-                                                class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-lightBlue-500"
-                                            >
-                                                <i class="fas fa-percent"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="text-sm text-blueGray-400 mt-4">
-                        <span class="text-emerald-500 mr-2">
-                          <i class="fas fa-arrow-up"></i> 12%
-                        </span>
-                                        <span class="whitespace-nowrap">
-                          Since last month
-                        </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+
+    <meta name="keywords" content="huyhq">
+    <meta name="description" content="huhq"/>
+    <meta name="twitter:card" content="product">
+    <meta name="twitter:site" content="@huyhq">
+    <meta name="twitter:title" content="huyhq">
+    <meta name="twitter:description" content=". .">
+    <meta name="twitter:creator" content="@huyhq">
+
+    <meta property="og:title" content="huyhqg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content=""
+    />
+    <meta property="og:site_name" content="Huyhq" />
+    @include('admin.layouts.style')
+    <script>
+        (function(a, s, y, n, c, h, i, d, e) {
+            s.className += ' ' + y;
+            h.start = 1 * new Date;
+            h.end = i = function() {
+                s.className = s.className.replace(RegExp(' ?' + y), '')
+            };
+            (a[n] = a[n] || []).hide = h;
+            setTimeout(function() {
+                i();
+                h.end = null
+            }, c);
+            h.timeout = c;
+        })(window, document.documentElement, 'async-hide', 'dataLayer', 4000, {
+            'GTM-K9BGS8K': true
+        });
+    </script>
+
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-46172202-22', 'auto', {
+            allowLinker: true
+        });
+        ga('set', 'anonymizeIp', true);
+        ga('require', 'GTM-K9BGS8K');
+        ga('require', 'displayfeatures');
+        ga('require', 'linker');
+        ga('linker:autoLink', ["2checkout.com", "avangate.com"]);
+    </script>
+
+
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
+    </script>
+
+</head>
+
+<body class="g-sidenav-show  bg-gray-200">
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+@include('admin.layouts.sidebar')
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+
+    @include('admin.layouts.navbar')
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-lg-12 position-relative z-index-2">
+                <div id="content">
+                    @yield('content')
                 </div>
             </div>
         </div>
-        <div class="px-4 md:px-10 mx-auto w-full -m-24">
-            <div class="flex flex-wrap">
-                @yield('content')
-            </div>
-            @include('admin.layouts.footer')
-        </div>
+        @include('admin.layouts.footer')
     </div>
-</div>
-</body>
+</main>
+@include('admin.layouts.setting')
 @include('admin.layouts.javascript')
+</body>
+
 </html>

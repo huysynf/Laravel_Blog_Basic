@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\Jetstream;
 use Laravel\Socialite\Facades\Socialite;
+use function PHPUnit\Framework\isEmpty;
 
 class LoginController extends Controller
 {
@@ -37,9 +38,11 @@ class LoginController extends Controller
     {
         try {
             $userSocial = Socialite::driver($social)->stateless()->user();
-            if ($this->userRepository->findWithEmail($social->getEmail())) {
-                $this->createUserSocial($userSocial, $social);
+            $user = $this->userRepository->findWithEmail($userSocial->getEmail());
+            if (is_null($user)) {
+                $user = $this->createUserSocial($userSocial, $social);
             }
+            auth()->loginUsingId($user->id);
             return redirect()->intended();
         } catch (\Exception $exception) {
             abort(500, $exception->getMessage());
@@ -85,7 +88,7 @@ class LoginController extends Controller
      * @param $social
      * @return void
      */
-    public function createUserSocial($userSocial, $social): void
+    public function createUserSocial($userSocial, $social): mixed
     {
         $dataCreate['social_id'] = $userSocial->getId();
         $dataCreate['name'] = $userSocial->getName();
@@ -95,5 +98,6 @@ class LoginController extends Controller
         $userCreate = $this->create($dataCreate);
         $this->createTeam($userCreate);
         $userCreate->addSocial($dataCreate['social_id'], $social);
+        return $userCreate;
     }
 }
