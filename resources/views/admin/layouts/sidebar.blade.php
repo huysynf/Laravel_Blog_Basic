@@ -75,6 +75,9 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item mt-3">
+                <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder text-white">PRODUCTS</h6>
+            </li>
             <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#applicationsExamples" class="nav-link text-white " aria-controls="applicationsExamples" role="button" aria-expanded="false">
                     <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">apps</i>
@@ -120,6 +123,9 @@
                         </li>
                     </ul>
                 </div>
+            </li>
+            <li class="nav-item mt-3">
+                <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder text-white">CONTENTS</h6>
             </li>
             <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#ecommerceExamples" class="nav-link text-white " aria-controls="ecommerceExamples" role="button" aria-expanded="false">
@@ -192,6 +198,9 @@
                         </li>
                     </ul>
                 </div>
+            </li>
+            <li class="nav-item mt-3">
+                <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder text-white">SETTINGS</h6>
             </li>
             <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#authExamples" class="nav-link text-white " aria-controls="authExamples" role="button" aria-expanded="false">
