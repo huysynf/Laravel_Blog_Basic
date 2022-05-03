@@ -53,27 +53,33 @@
         @endif
 
         <!-- Name -->
-        <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="name" value="{{ __('Name') }}" />
-            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
-            <x-jet-input-error for="name" class="mt-2" />
-        </div>
+        <div class="row mt-3">
+            <div class="col-12 col-sm-6">
+                <div class="input-group input-group-dynamic">
+                    <label class="form-label">{{ __('Email') }}</label>
+                    <input class="multisteps-form__input form-control" value="{{auth()->user()->email}}" type="email" name="email" onfocus="focused(this)" onfocusout="defocused(this)">
+                    <x-jet-input-error for="email" class="mt-2" />
 
-        <!-- Email -->
-        <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="email" value="{{ __('Email') }}" />
-            <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
-            <x-jet-input-error for="email" class="mt-2" />
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                <div class="input-group input-group-dynamic">
+                    <label class="form-label">{{ __('Name') }}</label>
+                    <input class="multisteps-form__input form-control"  value="{{auth()->user()->name}}" type="name" onfocus="focused(this)" onfocusout="defocused(this)">
+                    <x-jet-input-error for="name" class="mt-2" />
+
+                </div>
+            </div>
+        </div>
+        <div class="mb-2">
+            <x-jet-action-message class="mr-3" on="saved">
+                {{ __('Saved.') }}
+            </x-jet-action-message>
+
+            <x-jet-button wire:loading.attr="disabled" wire:target="photo">
+                {{ __('Save') }}
+            </x-jet-button>
         </div>
     </x-slot>
 
-    <x-slot name="actions">
-        <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
-        </x-jet-action-message>
-
-        <x-jet-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
-        </x-jet-button>
-    </x-slot>
 </x-jet-form-section>
