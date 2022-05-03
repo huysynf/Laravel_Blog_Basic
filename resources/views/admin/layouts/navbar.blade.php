@@ -20,9 +20,9 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-                <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Analytics</li>
+                <li class="breadcrumb-item text-sm text-dark active" aria-current="page">@yield('title','Huyhq')</li>
             </ol>
-            <h6 class="font-weight-bolder mb-0">Analytics</h6>
+            <h6 class="font-weight-bolder mb-0">@yield('title','Huyhq')</h6>
         </nav>
         <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
             <a href="javascript:;" class="nav-link text-body p-0">
@@ -37,12 +37,12 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                 <div class="input-group input-group-outline">
                     <label class="form-label">Search here</label>
-                    <input type="text" class="form-control">
+                    <input type="text" autocomplete="none" class="form-control">
                 </div>
             </div>
             <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item">
-                    <a href="../../pages/authentication/signin/illustration.html" class="nav-link text-body p-0 position-relative" target="_blank">
+                    <a href="{{route('profile.show')}}" class="nav-link text-body p-0 position-relative" target="_blank">
                         <i class="material-icons me-sm-1">
                             account_circle
                         </i>
