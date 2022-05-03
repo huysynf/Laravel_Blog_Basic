@@ -1,240 +1,318 @@
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
-    charset="utf-8"
-></script>
-<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
-<script type="text/javascript">
-    /* Make dynamic date appear */
-    (function () {
-        if (document.getElementById("get-current-year")) {
-            document.getElementById(
-                "get-current-year"
-            ).innerHTML = new Date().getFullYear();
-        }
-    })();
-    /* Sidebar - Side navigation menu on mobile/responsive mode */
-    function toggleNavbar(collapseID) {
-        document.getElementById(collapseID).classList.toggle("hidden");
-        document.getElementById(collapseID).classList.toggle("bg-white");
-        document.getElementById(collapseID).classList.toggle("m-2");
-        document.getElementById(collapseID).classList.toggle("py-3");
-        document.getElementById(collapseID).classList.toggle("px-6");
-    }
-    /* Function for dropdowns */
-    function openDropdown(event, dropdownID) {
-        let element = event.target;
-        while (element.nodeName !== "A") {
-            element = element.parentNode;
-        }
-        Popper.createPopper(element, document.getElementById(dropdownID), {
-            placement: "bottom-start",
-        });
-        document.getElementById(dropdownID).classList.toggle("hidden");
-        document.getElementById(dropdownID).classList.toggle("block");
-    }
+<script src="{{asset('assets/js/core/popper.min.js')}}"></script>
+<script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
 
-    (function () {
-        /* Chart initialisations */
-        /* Line Chart */
-        var config = {
-            type: "line",
-            data: {
-                labels: [
-                    "January",
-                    "February",
-                    "March",
-                    "April",
-                    "May",
-                    "June",
-                    "July",
-                ],
-                datasets: [
-                    {
-                        label: new Date().getFullYear(),
-                        backgroundColor: "#4c51bf",
-                        borderColor: "#4c51bf",
-                        data: [65, 78, 66, 44, 56, 67, 75],
-                        fill: false,
-                    },
-                    {
-                        label: new Date().getFullYear() - 1,
-                        fill: false,
-                        backgroundColor: "#fff",
-                        borderColor: "#fff",
-                        data: [40, 68, 86, 74, 56, 60, 87],
-                    },
-                ],
-            },
-            options: {
-                maintainAspectRatio: false,
-                responsive: true,
-                title: {
-                    display: false,
-                    text: "Sales Charts",
-                    fontColor: "white",
-                },
-                legend: {
-                    labels: {
-                        fontColor: "white",
-                    },
-                    align: "end",
-                    position: "bottom",
-                },
-                tooltips: {
-                    mode: "index",
-                    intersect: false,
-                },
-                hover: {
-                    mode: "nearest",
-                    intersect: true,
-                },
-                scales: {
-                    xAxes: [
-                        {
-                            ticks: {
-                                fontColor: "rgba(255,255,255,.7)",
-                            },
-                            display: true,
-                            scaleLabel: {
-                                display: false,
-                                labelString: "Month",
-                                fontColor: "white",
-                            },
-                            gridLines: {
-                                display: false,
-                                borderDash: [2],
-                                borderDashOffset: [2],
-                                color: "rgba(33, 37, 41, 0.3)",
-                                zeroLineColor: "rgba(0, 0, 0, 0)",
-                                zeroLineBorderDash: [2],
-                                zeroLineBorderDashOffset: [2],
-                            },
-                        },
-                    ],
-                    yAxes: [
-                        {
-                            ticks: {
-                                fontColor: "rgba(255,255,255,.7)",
-                            },
-                            display: true,
-                            scaleLabel: {
-                                display: false,
-                                labelString: "Value",
-                                fontColor: "white",
-                            },
-                            gridLines: {
-                                borderDash: [3],
-                                borderDashOffset: [3],
-                                drawBorder: false,
-                                color: "rgba(255, 255, 255, 0.15)",
-                                zeroLineColor: "rgba(33, 37, 41, 0)",
-                                zeroLineBorderDash: [2],
-                                zeroLineBorderDashOffset: [2],
-                            },
-                        },
-                    ],
-                },
-            },
-        };
-        var ctx = document.getElementById("line-chart").getContext("2d");
-        window.myLine = new Chart(ctx, config);
+<script src="{{asset('assets/js/plugins/dragula/dragula.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/jkanban/jkanban.js')}}"></script>
+<script src="{{asset('assets/js/plugins/chartjs.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/world.js')}}"></script>
+<script>
+    var ctx = document.getElementById("chart-bars").getContext("2d");
 
-        /* Bar Chart */
-        config = {
-            type: "bar",
-            data: {
-                labels: [
-                    "January",
-                    "February",
-                    "March",
-                    "April",
-                    "May",
-                    "June",
-                    "July",
-                ],
-                datasets: [
-                    {
-                        label: new Date().getFullYear(),
-                        backgroundColor: "#ed64a6",
-                        borderColor: "#ed64a6",
-                        data: [30, 78, 56, 34, 100, 45, 13],
-                        fill: false,
-                        barThickness: 8,
-                    },
-                    {
-                        label: new Date().getFullYear() - 1,
-                        fill: false,
-                        backgroundColor: "#4c51bf",
-                        borderColor: "#4c51bf",
-                        data: [27, 68, 86, 74, 10, 4, 87],
-                        barThickness: 8,
-                    },
-                ],
-            },
-            options: {
-                maintainAspectRatio: false,
-                responsive: true,
-                title: {
-                    display: false,
-                    text: "Orders Chart",
-                },
-                tooltips: {
-                    mode: "index",
-                    intersect: false,
-                },
-                hover: {
-                    mode: "nearest",
-                    intersect: true,
-                },
+    new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["M", "T", "W", "T", "F", "S", "S"],
+            datasets: [{
+                label: "Sales",
+                tension: 0.4,
+                borderWidth: 0,
+                borderRadius: 4,
+                borderSkipped: false,
+                backgroundColor: "rgba(255, 255, 255, .8)",
+                data: [50, 20, 10, 22, 50, 10, 40],
+                maxBarThickness: 6
+            }, ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
                 legend: {
-                    labels: {
-                        fontColor: "rgba(0,0,0,.4)",
+                    display: false,
+                }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+            scales: {
+                y: {
+                    grid: {
+                        drawBorder: false,
+                        display: true,
+                        drawOnChartArea: true,
+                        drawTicks: false,
+                        borderDash: [5, 5],
+                        color: 'rgba(255, 255, 255, .2)'
                     },
-                    align: "end",
-                    position: "bottom",
+                    ticks: {
+                        suggestedMin: 0,
+                        suggestedMax: 500,
+                        beginAtZero: true,
+                        padding: 10,
+                        font: {
+                            size: 14,
+                            weight: 300,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                        color: "#fff"
+                    },
                 },
-                scales: {
-                    xAxes: [
-                        {
-                            display: false,
-                            scaleLabel: {
-                                display: true,
-                                labelString: "Month",
-                            },
-                            gridLines: {
-                                borderDash: [2],
-                                borderDashOffset: [2],
-                                color: "rgba(33, 37, 41, 0.3)",
-                                zeroLineColor: "rgba(33, 37, 41, 0.3)",
-                                zeroLineBorderDash: [2],
-                                zeroLineBorderDashOffset: [2],
-                            },
+                x: {
+                    grid: {
+                        drawBorder: false,
+                        display: true,
+                        drawOnChartArea: true,
+                        drawTicks: false,
+                        borderDash: [5, 5],
+                        color: 'rgba(255, 255, 255, .2)'
+                    },
+                    ticks: {
+                        display: true,
+                        color: '#f8f9fa',
+                        padding: 10,
+                        font: {
+                            size: 14,
+                            weight: 300,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
                         },
-                    ],
-                    yAxes: [
-                        {
-                            display: true,
-                            scaleLabel: {
-                                display: false,
-                                labelString: "Value",
-                            },
-                            gridLines: {
-                                borderDash: [2],
-                                drawBorder: false,
-                                borderDashOffset: [2],
-                                color: "rgba(33, 37, 41, 0.2)",
-                                zeroLineColor: "rgba(33, 37, 41, 0.15)",
-                                zeroLineBorderDash: [2],
-                                zeroLineBorderDashOffset: [2],
-                            },
-                        },
-                    ],
+                    }
                 },
             },
-        };
-        ctx = document.getElementById("bar-chart").getContext("2d");
-        window.myBar = new Chart(ctx, config);
-    })();
+        },
+    });
+
+
+    var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+    new Chart(ctx2, {
+        type: "line",
+        data: {
+            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: "Mobile apps",
+                tension: 0,
+                borderWidth: 0,
+                pointRadius: 5,
+                pointBackgroundColor: "rgba(255, 255, 255, .8)",
+                pointBorderColor: "transparent",
+                borderColor: "rgba(255, 255, 255, .8)",
+                borderColor: "rgba(255, 255, 255, .8)",
+                borderWidth: 4,
+                backgroundColor: "transparent",
+                fill: true,
+                data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
+                maxBarThickness: 6
+
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+            scales: {
+                y: {
+                    grid: {
+                        drawBorder: false,
+                        display: true,
+                        drawOnChartArea: true,
+                        drawTicks: false,
+                        borderDash: [5, 5],
+                        color: 'rgba(255, 255, 255, .2)'
+                    },
+                    ticks: {
+                        display: true,
+                        color: '#f8f9fa',
+                        padding: 10,
+                        font: {
+                            size: 14,
+                            weight: 300,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    }
+                },
+                x: {
+                    grid: {
+                        drawBorder: false,
+                        display: false,
+                        drawOnChartArea: false,
+                        drawTicks: false,
+                        borderDash: [5, 5]
+                    },
+                    ticks: {
+                        display: true,
+                        color: '#f8f9fa',
+                        padding: 10,
+                        font: {
+                            size: 14,
+                            weight: 300,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    }
+                },
+            },
+        },
+    });
+
+    var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
+
+    new Chart(ctx3, {
+        type: "line",
+        data: {
+            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: "Mobile apps",
+                tension: 0,
+                borderWidth: 0,
+                pointRadius: 5,
+                pointBackgroundColor: "rgba(255, 255, 255, .8)",
+                pointBorderColor: "transparent",
+                borderColor: "rgba(255, 255, 255, .8)",
+                borderWidth: 4,
+                backgroundColor: "transparent",
+                fill: true,
+                data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+                maxBarThickness: 6
+
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+            scales: {
+                y: {
+                    grid: {
+                        drawBorder: false,
+                        display: true,
+                        drawOnChartArea: true,
+                        drawTicks: false,
+                        borderDash: [5, 5],
+                        color: 'rgba(255, 255, 255, .2)'
+                    },
+                    ticks: {
+                        display: true,
+                        padding: 10,
+                        color: '#f8f9fa',
+                        font: {
+                            size: 14,
+                            weight: 300,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    }
+                },
+                x: {
+                    grid: {
+                        drawBorder: false,
+                        display: false,
+                        drawOnChartArea: false,
+                        drawTicks: false,
+                        borderDash: [5, 5]
+                    },
+                    ticks: {
+                        display: true,
+                        color: '#f8f9fa',
+                        padding: 10,
+                        font: {
+                            size: 14,
+                            weight: 300,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    }
+                },
+            },
+        },
+    });
+
+    // Initialize the vector map
+    var map = new jsVectorMap({
+        selector: "#map",
+        map: "world_merc",
+        zoomOnScroll: false,
+        zoomButtons: false,
+        selectedMarkers: [1, 3],
+        markersSelectable: true,
+        markers: [{
+            name: "USA",
+            coords: [40.71296415909766, -74.00437720027804]
+        },
+            {
+                name: "Germany",
+                coords: [51.17661451970939, 10.97947735117339]
+            },
+            {
+                name: "Brazil",
+                coords: [-7.596735421549542, -54.781694323779185]
+            },
+            {
+                name: "Russia",
+                coords: [62.318222797104276, 89.81564777631716]
+            },
+            {
+                name: "China",
+                coords: [22.320178999475512, 114.17161225541399],
+                style: {
+                    fill: '#E91E63'
+                }
+            }
+        ],
+        markerStyle: {
+            initial: {
+                fill: "#e91e63"
+            },
+            hover: {
+                fill: "E91E63"
+            },
+            selected: {
+                fill: "E91E63"
+            }
+        },
+
+
+    });
 </script>
+<script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+            damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+</script>
+
+<script async defer src="{{asset('assets/js/github/buttons.js')}}"></script>
+
+<script src="{{asset('assets/js/material-dashboard.min.js?v=3.0.3')}}"></script>
 
 @yield('script')
