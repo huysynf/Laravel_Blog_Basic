@@ -23,7 +23,7 @@ Route::get('/home', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function (){
-    includeRoutes('/admin/');
+    includeRoutes(__DIR__.'/admin/');
 });
 
 
