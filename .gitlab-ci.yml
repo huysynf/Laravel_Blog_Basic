@@ -51,3 +51,16 @@ deploy-job:      # This job runs in the deploy stage.
   script:
     - echo "Deploying application..."
     - echo "Application successfully deployed."
+deploying-to-product:
+  stage: deploy-product
+  before_script:
+    - 'which ssh-agent || ( apk update -y && apk add openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - envoy run deploy --branch=main
+  only:
+    - main
+
