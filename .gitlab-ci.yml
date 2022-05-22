@@ -45,9 +45,18 @@ unit-test-job:
   script:
     - bash setup.sh
     - bash test-coverage.sh
-
-deploy-job:      # This job runs in the deploy stage.
-  stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
+deploying-product:
+  stage: deploy
+  before_script:
+    - 'which ssh-agent || ( apk update -y && apk add openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
     - echo "Deploying application..."
+    - envoy run deploy --branch=main
     - echo "Application successfully deployed."
+  only:
+    - main
+

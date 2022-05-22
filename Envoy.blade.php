@@ -1,41 +1,29 @@
-@servers(['web' => 'deployer@192.168.1.1'])
-
 @setup
-$repository = 'git@gitlab.example.com:<USERNAME>/laravel-sample.git';
-    $releases_dir = '/var/www/app/releases';
-    $app_dir = '/var/www/app';
-    $release = date('YmdHis');
-    $new_release_dir = $releases_dir .'/'. $release;
-    @endsetup
+$product_dir = '/var/www/html/my-blog/';
+@endsetup
 
-    @story('deploy')
-    clone_repository
-    run_composer
-    update_symlinks
-    @endstory
+@servers(['product' => 'root@54.236.187.178'])
 
-    @task('clone_repository')
-    echo 'Cloning repository'
-    [ -d {{ $releases_dir }} ] || mkdir {{ $releases_dir }}
-    git clone --depth 1 {{ $repository }} {{ $new_release_dir }}
-    cd {{ $new_release_dir }}
-    git reset --hard {{ $commit }}
-    @endtask
+@story('deploy', ['on' => ['product']])
+@if($branch == 'main')
+    product
+@endif
+@endstory
 
-    @task('run_composer')
-    echo "Starting deployment ({{ $release }})"
-    cd {{ $new_release_dir }}
-    composer install --prefer-dist --no-scripts -q -o
-    @endtask
+@task('product')
+cd {{ $product_dir }}
+git stash
+export GIT_SSL_NO_VERIFY=1
+git checkout main
+git pull origin main
+composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+composer dump-autoload
+php artisan key:generate
+php artisan cache:clear
+php artisan config:clear
+php artisan migrate
+php artisan db:seed
+php artisan queue:restart
+php artisan cache:clear
+@endtask
 
-    @task('update_symlinks')
-    echo "Linking storage directory"
-    rm -rf {{ $new_release_dir }}/storage
-    ln -nfs {{ $app_dir }}/storage {{ $new_release_dir }}/storage
-
-    echo 'Linking .env file'
-    ln -nfs {{ $app_dir }}/.env {{ $new_release_dir }}/.env
-
-    echo 'Linking current release'
-    ln -nfs {{ $new_release_dir }} {{ $app_dir }}/current
-    @endtask
