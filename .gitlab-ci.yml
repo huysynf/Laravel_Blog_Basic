@@ -50,7 +50,7 @@ deploying-product:
   before_script:
     - 'which ssh-agent || ( apk update -y && apk add openssh-client -y )'
     - eval $(ssh-agent -s)
-    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - ssh-add <(echo "$SSH_PRIVATE_KEY" | base64 --decode)
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
