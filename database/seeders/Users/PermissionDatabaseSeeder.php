@@ -18,7 +18,7 @@ class PermissionDatabaseSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Data permissions
-        $permissions = config('permission');
+        $permissions = config('permission.all');
 
         // Create permissions
         foreach ($permissions as $group => $permission) {
