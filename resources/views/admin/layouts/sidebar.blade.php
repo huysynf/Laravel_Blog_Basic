@@ -142,25 +142,19 @@
                             <div class="collapse " id="productsExample">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link text-white " href="../../pages/ecommerce/products/new-product.html">
+                                        <a class="nav-link text-white " href="{{route('admin.products.create')}}">
                                             <span class="sidenav-mini-icon"> N </span>
                                             <span class="sidenav-normal  ms-2  ps-1"> New Product </span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-white " href="../../pages/ecommerce/products/edit-product.html">
+                                        <a class="nav-link text-white " href="{{route('admin.products.edit')}}">
                                             <span class="sidenav-mini-icon"> E </span>
                                             <span class="sidenav-normal  ms-2  ps-1"> Edit Product </span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-white " href="../../pages/ecommerce/products/product-page.html">
-                                            <span class="sidenav-mini-icon"> P </span>
-                                            <span class="sidenav-normal  ms-2  ps-1"> Product Page </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-white " href="../../pages/ecommerce/products/products-list.html">
+                                        <a class="nav-link text-white " href="{{route('admin.products.index')}}">
                                             <span class="sidenav-mini-icon"> P </span>
                                             <span class="sidenav-normal  ms-2  ps-1"> Products List </span>
                                         </a>
@@ -176,13 +170,13 @@
                             <div class="collapse " id="ordersExample">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link text-white " href="../../pages/ecommerce/orders/list.html">
+                                        <a class="nav-link text-white " href="{{route('admin.orders.index')}}">
                                             <span class="sidenav-mini-icon"> O </span>
                                             <span class="sidenav-normal  ms-2  ps-1"> Order List </span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-white " href="../../pages/ecommerce/orders/details.html">
+                                        <a class="nav-link text-white " href="{{route('admin.orders.show')}}">
                                             <span class="sidenav-mini-icon"> O </span>
                                             <span class="sidenav-normal  ms-2  ps-1"> Order Details </span>
                                         </a>
