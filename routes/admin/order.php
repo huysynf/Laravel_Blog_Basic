@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Admin\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(\App\Http\Controllers\Admin\OrderController::class)
@@ -8,3 +10,4 @@ Route::controller(\App\Http\Controllers\Admin\OrderController::class)
         Route::get('/', 'index')->name('index');
         Route::get('/show', 'create')->name('show');
     });
+    Route::resources(OrderController::class);
