@@ -3,4 +3,4 @@
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::resources(UserController::class);
+Route::resource(UserController::class);

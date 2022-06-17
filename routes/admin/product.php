@@ -10,4 +10,4 @@ Route::controller(\App\Http\Controllers\Admin\ProductController::class)
         Route::get('/', 'index')->name('index');
     });
 
-    Route::resources(ProductController::class);
+    Route::resource(ProductController::class);
