@@ -13,7 +13,7 @@
                     </div>
                     <div class="ms-auto my-auto mt-lg-0 mt-4">
                         <div class="ms-auto my-auto">
-                            <a href="{{route('admin.categories.create')}}" class="btn bg-gradient-primary btn-sm mb-0" target="_blank">+&nbsp;
+                            <a href="{{route('admin.categories.create')}}" class="btn bg-gradient-primary btn-sm mb-0" >+&nbsp;
                                 New Categories</a>
                             <button type="button" class="btn btn-outline-primary btn-sm mb-0" data-bs-toggle="modal"
                                     data-bs-target="#import">

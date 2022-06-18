@@ -40,9 +40,7 @@ class CategoryService
      */
     public function create($request)
     {
-        $category = $this->categoryRepository->create($request->all());
-        $category->syncSlug($category->name);
-        return $category;
+        return $this->categoryRepository->create($request->all());
     }
 
     /**
@@ -62,7 +60,14 @@ class CategoryService
     {
         $category = $this->categoryRepository->findOrFail($id);
         $category->update($request->all());
-        $category->syncSlug($category->name);
         return $category;
+    }
+
+    /**
+     * @return array|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model[]
+     */
+    public function all()
+    {
+        return $this->categoryRepository->all();
     }
 }

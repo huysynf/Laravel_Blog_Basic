@@ -79,12 +79,12 @@ class CategoryController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateCategoryRequest $request, $id)
+    public function update(UpdateCategoryRequest $request, $id): \Illuminate\Http\RedirectResponse
     {
         $category = $this->categoryService->update($request, $id);
-        return redirect()->route('categories.index')->with(['message' => 'Update  category: '. $category->name." success"]);
+        return redirect()->route('admin.categories.index')->with(['message' => 'Update  category: '. $category->name." success"]);
 
     }
 
@@ -102,5 +102,4 @@ class CategoryController extends Controller
 
         return redirect()->route('admin.categories.index')->with(['message' => 'Delete  category: '. $category->name." success"]);
     }
-
 }

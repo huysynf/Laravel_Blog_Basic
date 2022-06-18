@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <form class="multisteps-form__form" style="height: 391px;" method="post" action="{{route('admin.categories.update', $category->id)}}">
                         @csrf
-
+                        @method('put')
                         <div class="row mt-3">
                             <div class="col-12 ">
                                 <div class="input-group input-group-dynamic">
