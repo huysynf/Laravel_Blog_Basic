@@ -2,6 +2,7 @@
 
 namespace Database\Seeders\Users;
 
+use App\Models\User;
 use App\Models\Users\Permission;
 use App\Models\Users\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -28,5 +29,14 @@ class RoleDatabaseSeeder extends Seeder
                 ]);
             }
         }
+        $mail = 'haqhuy1999@gmail.com';
+        $admin = User::whereEmail($mail)->first();
+        if(!$admin)
+        {
+            $admin = User::factory()->create(['email'=>$mail]);
+
+        }
+        $admin->assignRole('super-admin');
+
     }
 }
