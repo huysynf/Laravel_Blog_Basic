@@ -18,7 +18,7 @@ trait Slug
         return $this->morphOne(Slug::class, 'model_has_slug', 'model_type', 'model_id', 'id');
     }
 
-    public function createSlug($name, $columName = 'name')
+    public function syncSlug($name, $columName = 'name')
     {
         return $this->slug()->updateOrcreate([$columName => str()->slug($name, '-')]);
     }

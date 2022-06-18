@@ -15,5 +15,23 @@ class Category extends Model
       'name',
       'parent_id'
     ];
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
 
+    public function childrens()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
+
+    public function getParentNameAttribute()
+    {
+        return optional($this->parent)->name;
+    }
+
+    public function scopeWithoutChild($q)
+    {
+        return $q->whereNull('parent_id');
+    }
 }
