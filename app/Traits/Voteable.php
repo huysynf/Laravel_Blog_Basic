@@ -38,5 +38,4 @@ trait Voteable
     {
         return $this->voteCount();
     }
-
 }

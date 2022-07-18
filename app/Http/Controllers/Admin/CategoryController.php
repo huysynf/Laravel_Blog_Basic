@@ -20,10 +20,10 @@ class CategoryController extends Controller
         $this->categoryService = $categoryService;
     }
 
-
     public function index(Request $request)
     {
         $categories = $this->categoryService->search($request);
+
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -34,7 +34,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $parentCategories =  $this->categoryService->getParents();
+        $parentCategories = $this->categoryService->getParents();
+
         return view('admin.categories.create', compact('parentCategories'));
     }
 
@@ -47,7 +48,8 @@ class CategoryController extends Controller
     public function store(CreateCategoryRequest $request)
     {
         $category = $this->categoryService->create($request);
-        return redirect()->route('admin.categories.index')->with(['message' => 'create new category: '. $category->name." success"]);
+
+        return redirect()->route('admin.categories.index')->with(['message' => 'create new category: '.$category->name.' success']);
     }
 
     /**
@@ -70,7 +72,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = $this->categoryService->findOrFail($id)->load('childrens');
-        $parentCategories =  $this->categoryService->getParents();
+        $parentCategories = $this->categoryService->getParents();
+
         return view('admin.categories.edit', compact('category', 'parentCategories'));
     }
 
@@ -84,8 +87,8 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, $id): \Illuminate\Http\RedirectResponse
     {
         $category = $this->categoryService->update($request, $id);
-        return redirect()->route('admin.categories.index')->with(['message' => 'Update  category: '. $category->name." success"]);
 
+        return redirect()->route('admin.categories.index')->with(['message' => 'Update  category: '.$category->name.' success']);
     }
 
     /**
@@ -100,6 +103,6 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect()->route('admin.categories.index')->with(['message' => 'Delete  category: '. $category->name." success"]);
+        return redirect()->route('admin.categories.index')->with(['message' => 'Delete  category: '.$category->name.' success']);
     }
 }

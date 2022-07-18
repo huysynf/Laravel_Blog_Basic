@@ -12,17 +12,18 @@ class Category extends Model
     use HasFactory, SlugCustom;
 
     protected $fillable = [
-      'name',
-      'parent_id'
+        'name',
+        'parent_id',
     ];
+
     public function parent()
     {
-        return $this->belongsTo(Category::class, 'parent_id');
+        return $this->belongsTo(self::class, 'parent_id');
     }
 
     public function childrens()
     {
-        return $this->hasMany(Category::class, 'parent_id');
+        return $this->hasMany(self::class, 'parent_id');
     }
 
     public function getParentNameAttribute()

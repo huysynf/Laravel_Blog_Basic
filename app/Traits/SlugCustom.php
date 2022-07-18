@@ -6,7 +6,6 @@ use App\Models\Slug;
 
 trait SlugCustom
 {
-
     public function slug()
     {
         return $this->morphOne(Slug::class, 'slugable');
@@ -34,7 +33,7 @@ trait SlugCustom
 
     public function scopeWithSlugName($query, $slugName)
     {
-        return $slugName ? $query->whereHas('slug', fn($q) => $q->whereName($slugName) ): null;
+        return $slugName ? $query->whereHas('slug', fn ($q) => $q->whereName($slugName)) : null;
     }
 
     public function deleteSlug()

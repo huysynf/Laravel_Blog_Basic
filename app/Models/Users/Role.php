@@ -12,6 +12,6 @@ class Role extends \Spatie\Permission\Models\Role
     protected $fillable = [
         'name',
         'group',
-        'display_name'
+        'display_name',
     ];
 }

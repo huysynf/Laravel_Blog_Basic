@@ -14,10 +14,10 @@ class UserSocial extends Model
         'social_id',
         'social_name',
         'user_id',
-        'auth_type'
+        'auth_type',
     ];
 
     public $casts = [
-        'social' => Social::class
+        'social' => Social::class,
     ];
 }

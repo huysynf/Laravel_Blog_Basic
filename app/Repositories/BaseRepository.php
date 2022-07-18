@@ -52,7 +52,6 @@ abstract class BaseRepository
      * @param array $columns
      * @return mixed
      */
-
     public function findOrFail($id, array $columns = ['*']): mixed
     {
         return $this->model->findOrFail($id);
@@ -63,7 +62,7 @@ abstract class BaseRepository
      * @param array $columns
      * @return mixed
      */
-    public function findOrFailWithTrashed($id,array $columns = ['*']): mixed
+    public function findOrFailWithTrashed($id, array $columns = ['*']): mixed
     {
         return $this->model->withTrashed()->findOrFail($id);
     }
@@ -84,7 +83,7 @@ abstract class BaseRepository
      * @param $id
      * @return BaseRepository
      */
-    public function update(array $input, $id): BaseRepository
+    public function update(array $input, $id): self
     {
         $model = $this->model->findOrFail($id);
         $model->fill($input);
@@ -113,6 +112,7 @@ abstract class BaseRepository
     {
         $model = $this->model->findOrFail($id);
         $model?->delete();
+
         return $model;
     }
 
@@ -120,7 +120,6 @@ abstract class BaseRepository
      * @param array $ids
      * @return mixed
      */
-
     public function multipleDelete(array $ids): mixed
     {
         return $this->model->destroy(array_values($ids));
@@ -150,7 +149,7 @@ abstract class BaseRepository
      * @param $arrayCreate
      * @return mixed
      */
-    public function updateOrCreate(array $arrayFind,array $arrayCreate = ['*']):mixed
+    public function updateOrCreate(array $arrayFind, array $arrayCreate = ['*']):mixed
     {
         return $this->model->updateOrCreate($arrayFind, $arrayCreate);
     }

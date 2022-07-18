@@ -31,7 +31,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email', 'password', 'email_verified_at'
+        'name', 'email', 'password', 'email_verified_at',
     ];
 
     /**
@@ -67,7 +67,6 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-
     public function socials(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(UserSocial::class);
@@ -79,13 +78,13 @@ class User extends Authenticatable
      * @param $authType
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function addSocial($socialId, $socialName,string $authType = 'normal'): \Illuminate\Database\Eloquent\Model
+    public function addSocial($socialId, $socialName, string $authType = 'normal'): \Illuminate\Database\Eloquent\Model
     {
         return $this->socials()->updateOrCreate(
             [
                 'social_id' => $socialId,
                 'social_name' => $socialName,
-                'auth_type' => $authType
+                'auth_type' => $authType,
             ]
         );
     }

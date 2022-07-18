@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Slug extends Model
 {
-
     protected $table = 'slugs';
 
     protected $fillable = ['slugable_id', 'slugable_type', 'name'];

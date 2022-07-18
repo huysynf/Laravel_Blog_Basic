@@ -3,14 +3,14 @@
 return [
     'all' => [
         'user' => [
-        'create-user-in-admin-page',
-        'edit-user-in-admin-page',
-        'update-user-in-admin-page',
-        'store-user-in-admin-page',
-        'show-user-in-admin-page',
-        'get-user-in-admin-page',
-        'destroy-user-in-admin-page',
-    ],
+            'create-user-in-admin-page',
+            'edit-user-in-admin-page',
+            'update-user-in-admin-page',
+            'store-user-in-admin-page',
+            'show-user-in-admin-page',
+            'get-user-in-admin-page',
+            'destroy-user-in-admin-page',
+        ],
         'role' => [
             'create-role-in-admin-page',
             'edit-role-in-admin-page',
@@ -33,6 +33,6 @@ return [
             'update-order-in-admin-page',
             'show-order-in-admin-page',
             'get-order-in-admin-page',
-        ]
-    ]
+        ],
+    ],
 ];

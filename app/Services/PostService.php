@@ -23,8 +23,10 @@ class PostService
     public function search($request)
     {
         $dataSearch['quantity'] = 10;
+
         return $this->postRepository->search($dataSearch);
     }
+
     /**
      * @param $id
      * @return mixed
@@ -44,9 +46,9 @@ class PostService
         $dataCreate['user_id'] = auth()->user()->id;
         $post = $this->postRepository->create($dataCreate);
         $post->assignCategories($request->category_ids);
+
         return $post;
     }
-
 
     /**
      * @param $request
@@ -58,6 +60,7 @@ class PostService
         $post = $this->postRepository->findOrFail($id)->load('categories');
         $post->update($request->all());
         $post->assignCategories($request->category_ids);
+
         return $post;
     }
 
