@@ -1,4 +1,5 @@
 <?php
+
 if (! function_exists('includeRoutes')) {
     /**
      * Loops through a folder and requires all PHP files
@@ -24,4 +25,3 @@ if (! function_exists('includeRoutes')) {
         }
     }
 }
-

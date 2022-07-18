@@ -17,11 +17,11 @@ class CategoryDatabaseSeeder extends Seeder
     {
         $category = [
             [
-                'name' => 'Chuyện tuần'
+                'name' => 'Chuyện tuần',
             ],
             [
-                'name' => 'Tôi đã học chứng chỉ như thế nào'
-            ]
+                'name' => 'Tôi đã học chứng chỉ như thế nào',
+            ],
         ];
 
         Category::insert($category);

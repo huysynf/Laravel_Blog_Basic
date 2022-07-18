@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     protected CategoryService $categoryService;
+
     protected PostService $postService;
 
     /**
@@ -25,10 +26,10 @@ class PostController extends Controller
         $this->postService = $postService;
     }
 
-
     public function index(Request $request)
     {
         $posts = $this->postService->search($request);
+
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -39,7 +40,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories =  $this->categoryService->all();
+        $categories = $this->categoryService->all();
+
         return view('admin.posts.create', compact('categories'));
     }
 
@@ -52,7 +54,8 @@ class PostController extends Controller
     public function store(CreatePostRequest $request)
     {
         $post = $this->postService->create($request);
-        return redirect()->route('admin.posts.index')->with(['message' => 'create new category: '. $post->name." success"]);
+
+        return redirect()->route('admin.posts.index')->with(['message' => 'create new category: '.$post->name.' success']);
     }
 
     /**
@@ -75,7 +78,8 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = $this->postService->findOrFail($id);
-        $categories =  $this->categoryService->all();
+        $categories = $this->categoryService->all();
+
         return view('admin.posts.edit', compact('categories', 'post'));
     }
 
@@ -89,8 +93,8 @@ class PostController extends Controller
     public function update(CreatePostRequest $request, $id): \Illuminate\Http\RedirectResponse
     {
         $post = $this->postService->update($request, $id);
-        return redirect()->route('admin.posts.index')->with(['message' => 'Update  : '. $post->name." success"]);
 
+        return redirect()->route('admin.posts.index')->with(['message' => 'Update  : '.$post->name.' success']);
     }
 
     /**
@@ -105,6 +109,6 @@ class PostController extends Controller
 
         $category->delete();
 
-        return redirect()->route('admin.posts.index')->with(['message' => 'Delete  category: '. $category->name." success"]);
+        return redirect()->route('admin.posts.index')->with(['message' => 'Delete  category: '.$category->name.' success']);
     }
 }

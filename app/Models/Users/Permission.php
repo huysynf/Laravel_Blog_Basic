@@ -10,8 +10,8 @@ class Permission extends \Spatie\Permission\Models\Permission
     use HasFactory;
 
     protected $fillable = [
-      'name',
-      'group',
-      'display_name'
+        'name',
+        'group',
+        'display_name',
     ];
 }

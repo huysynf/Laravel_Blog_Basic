@@ -23,8 +23,10 @@ class CategoryService
     public function search($request)
     {
         $dataSearch['quantity'] = 10;
+
         return $this->categoryRepository->search($dataSearch);
     }
+
     /**
      * @param $id
      * @return mixed
@@ -60,6 +62,7 @@ class CategoryService
     {
         $category = $this->categoryRepository->findOrFail($id);
         $category->update($request->all());
+
         return $category;
     }
 

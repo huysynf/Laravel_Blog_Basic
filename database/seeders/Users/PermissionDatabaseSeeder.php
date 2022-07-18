@@ -22,13 +22,12 @@ class PermissionDatabaseSeeder extends Seeder
 
         // Create permissions
         foreach ($permissions as $group => $permission) {
-           foreach ($permission as $item)
-           {
-               Permission::updateOrCreate([
-                   'name' => $item,
-                   'group' => $group
-               ]);
-           }
+            foreach ($permission as $item) {
+                Permission::updateOrCreate([
+                    'name' => $item,
+                    'group' => $group,
+                ]);
+            }
         }
     }
 }

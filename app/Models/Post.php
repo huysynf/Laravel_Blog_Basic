@@ -11,9 +11,9 @@ class Post extends Model
     use HasFactory, SlugCustom;
 
     protected $fillable = [
-      'name',
-      'content',
-      'user_id'
+        'name',
+        'content',
+        'user_id',
     ];
 
     public function categories()

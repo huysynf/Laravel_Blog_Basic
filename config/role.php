@@ -1,7 +1,8 @@
 <?php
+
 return [
     'admin' => [
-        'super-admin'
+        'super-admin',
     ],
     'system' => [
         'manager-user',

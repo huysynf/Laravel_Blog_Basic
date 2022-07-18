@@ -7,7 +7,6 @@ use App\Repositories\BaseRepository;
 
 class UserRepository extends BaseRepository
 {
-
     /**
      * @return string
      */

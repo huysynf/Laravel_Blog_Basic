@@ -182,7 +182,6 @@ return [
         \App\Providers\ComposeServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
 
-
     ],
 
     /*

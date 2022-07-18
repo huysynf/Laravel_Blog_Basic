@@ -21,22 +21,18 @@ class RoleDatabaseSeeder extends Seeder
 
         // Create permissions
         foreach ($roles as $group => $role) {
-            foreach ($role as $item)
-            {
+            foreach ($role as $item) {
                 Role::updateOrCreate([
                     'name' => $item,
-                    'group' => $group
+                    'group' => $group,
                 ]);
             }
         }
         $mail = 'haqhuy1999@gmail.com';
         $admin = User::whereEmail($mail)->first();
-        if(!$admin)
-        {
+        if (! $admin) {
             $admin = User::factory()->create(['email'=>$mail]);
-
         }
         $admin->assignRole('super-admin');
-
     }
 }

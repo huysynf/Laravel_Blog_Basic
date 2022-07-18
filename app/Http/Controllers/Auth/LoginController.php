@@ -17,7 +17,6 @@ use function PHPUnit\Framework\isEmpty;
 
 class LoginController extends Controller
 {
-
     protected UserRepository $userRepository;
 
     /**
@@ -33,7 +32,6 @@ class LoginController extends Controller
         return Socialite::driver($social)->redirect();
     }
 
-
     public function handleSocialCallback($social)
     {
         try {
@@ -43,6 +41,7 @@ class LoginController extends Controller
                 $user = $this->createUserSocial($userSocial, $social);
             }
             auth()->loginUsingId($user->id);
+
             return redirect()->intended();
         } catch (\Exception $exception) {
             abort(500, $exception->getMessage());
@@ -78,7 +77,7 @@ class LoginController extends Controller
     {
         $user->ownedTeams()->save(Team::forceCreate([
             'user_id' => $user->id,
-            'name' => explode(' ', $user->name, 2)[0] . "'s Team",
+            'name' => explode(' ', $user->name, 2)[0]."'s Team",
             'personal_team' => true,
         ]));
     }
@@ -98,6 +97,7 @@ class LoginController extends Controller
         $userCreate = $this->create($dataCreate);
         $this->createTeam($userCreate);
         $userCreate->addSocial($dataCreate['social_id'], $social);
+
         return $userCreate;
     }
 }
